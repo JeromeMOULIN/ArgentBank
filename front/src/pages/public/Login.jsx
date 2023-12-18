@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Connection from '../../service/connection'
 import './login.css'
 
 const Login = () => {
@@ -8,14 +8,14 @@ const Login = () => {
             <section className="sign-in-content">
                 <i className="fa fa-user-circle sign-in-icon"></i>
                 <h1>Sign In</h1>
-                <form>
+                <form onSubmit={Connection}>
                     <div className="input-wrapper">
-                        <label htmlFor="username">Username</label
-                        ><input type="text" id="username" />
+                        <label htmlFor="email">Email</label
+                        ><input name='email' type="email" id="username" />
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="password">Password</label
-                        ><input type="password" id="password" />
+                        ><input name="password" type="password" id="password" />
                     </div>
                     <div className="input-remember">
                         <input type="checkbox" id="remember-me" /><label htmlFor="remember-me"
