@@ -1,6 +1,8 @@
 import React from 'react';
 import './nav.css'
+import getProfile from '../../service/Profile';
 
+getProfile();
 
 const Nav = () => {
     return (
