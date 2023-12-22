@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
+import getProfile from '@service/Profile'
+import { useDispatch, useSelector } from 'react-redux';
 
 import './user.css'
 
 const User = () => {
+    const test = useSelector(state => state)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        getProfile()
+            .then(userData => {
+                console.log(userData)
+                dispatch({
+                    type: "Profile/setUser",
+                    payload: userData.body,
+                })
+                console.log(test)
+            });
+    }, [])
+
+
     return (
         <main className="main bg-dark">
             <div className="header">
-                <h1>Welcome back<br />Tony Jarvis!</h1>
+                <h1>Welcome back<br />{test.Profile.user.userName}</h1>
                 <button className="edit-button">Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>

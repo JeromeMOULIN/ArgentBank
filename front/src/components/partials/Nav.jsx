@@ -1,10 +1,15 @@
-import React from 'react';
 import './nav.css'
-import getProfile from '../../service/Profile';
-
-getProfile();
 
 const Nav = () => {
+
+    //const profileSetting = useSelector(state => console.log(state.Profile))
+
+    let btnNav = <a className="main-nav-item" href="sign-in">
+        <i className="fa fa-user-circle"></i>
+        Sign In
+    </a>
+    
+
     return (
         <nav className="main-nav">
             <a className="main-nav-logo" href="/">

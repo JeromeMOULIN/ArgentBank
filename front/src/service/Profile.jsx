@@ -7,11 +7,8 @@ const getProfile = async () => {
         },
     });
 
-    let userResponse = await responseUser.json()
+    let dataUser = await responseUser.json()
 
-    //save Profile => //save in reduxStore
-    let userProfile = userResponse.body
-    console.log(userProfile)
+    return dataUser
 }
-
 export default getProfile
