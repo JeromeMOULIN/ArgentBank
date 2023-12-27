@@ -4,8 +4,7 @@ import App from './App.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from '@pages/public/HOME.jsx'
 import Login from '@pages/public/Login.jsx'
-import User from '@pages/private/User.jsx'
-
+import AuthGuard from './_helpers/AuthGuard.jsx'
 import { Provider } from 'react-redux'
 import { mainStore } from '@components/redux/UserSlice.jsx'
 
@@ -21,12 +20,13 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/sign-in',
+        path: '/login',
         element: <Login />
       },
       {
         path: '/user',
-        element: <User />
+        element: <AuthGuard/>
+
       }
 
     ]
