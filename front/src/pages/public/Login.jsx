@@ -1,6 +1,7 @@
 import React from 'react';
 import getToken from '@service/connection'
 import { useNavigate } from 'react-router-dom'
+import { accountService } from '../../_services/accountService';
 import './login.css'
 
 
@@ -35,7 +36,7 @@ const Login = () => {
     let token = response.body.token
 
     //save token in localStorage
-    localStorage.setItem("token", token)
+    accountService.saveToken(token)
 
     //redirection // Need to update with navigate user/:userName
     navigate('/user')

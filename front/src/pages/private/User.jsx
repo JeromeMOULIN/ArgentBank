@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
 import getProfile from '@service/Profile'
 import { useDispatch, useSelector } from 'react-redux';
 
 import './user.css'
 
 const User = () => {
-    const test = useSelector(state => state)
+    const userInfo = useSelector(state => state)
 
     const dispatch = useDispatch()
 
@@ -18,15 +17,15 @@ const User = () => {
                     type: "Profile/setUser",
                     payload: userData.body,
                 })
-                console.log(test)
             });
     }, [])
-
+    let firstName = userInfo.Profile.user.firstName
+    let LastName = userInfo.Profile.user.lastName
 
     return (
         <main className="main bg-dark">
             <div className="header">
-                <h1>Welcome back<br />{test.Profile.user.userName}</h1>
+                <h1>Welcome back<br />{firstName} {LastName}</h1>
                 <button className="edit-button">Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>
