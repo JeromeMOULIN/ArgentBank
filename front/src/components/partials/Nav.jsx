@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { accountService } from '../../_services/accountService';
+import { accountService } from '@/service/accountService';
 import './nav.css'
 
 const Nav = () => {
