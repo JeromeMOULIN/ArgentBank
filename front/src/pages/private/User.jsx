@@ -6,7 +6,9 @@ import './user.css'
 
 const User = () => {
     const [userNameState, setUserName] = useState('')
-    const userInfo = useSelector(state => state)
+    const [lastNameState, setLastName] = useState('')
+    const [firstNameState, setFirstName] = useState('')
+    const userInfo = useSelector(state => state.Profile)
 
     const dispatch = useDispatch()
 
@@ -18,19 +20,26 @@ const User = () => {
                     type: "Profile/setUser",
                     payload: userData.body,
                 })
+                setLastName(userInfo.user.lastName)
+                setFirstName(userInfo.user.firstName)
+                setUserName(userInfo.user.userName)
             });
     }, [])
 
-    let firstName = userInfo.Profile.user.firstName
-    let LastName = userInfo.Profile.user.lastName
-    let userName = userInfo.Profile.user.userName
+    let firstName = userInfo.user.firstName
+    let lastName = userInfo.user.lastName
 
     const show = () => {
         document.querySelector('.updateForm').classList.toggle("hidden")
     }
 
     const handleInput = (e) => {
-        setUserName(e.target.value)
+        e.preventDefault()
+        dispatch({
+                    type: "Profile/setUserName",
+                    payload: e.target.value,
+                })
+        
     }
 
     const updateUserName = (e) => {
@@ -41,7 +50,7 @@ const User = () => {
     return (
         <main className="main bg-dark">
             <div className="header">
-                <h1>Welcome back<br />{firstName} {LastName}</h1>
+                <h1>Welcome back<br />{firstName} {lastName}</h1>
 
                 <button onClick={show} className="edit-button">Edit Name</button>
 
@@ -49,17 +58,17 @@ const User = () => {
                     <div className="inputeUpdate input-username">
                         <label htmlFor="username">UserName</label>
                         <button onClick={updateUserName} className='majName'>X</button>
-                        <input name='username' type="text" id="username" onChange={handleInput} value={userNameState} />
+                        <input name='username' type="text" id="username" onChange={handleInput} value={userInfo.user.userName} />
                     </div>
 
-                    <div className="inputeUpdate input-lastname">
+                    {/* <div className="inputeUpdate input-lastname">
                         <label htmlFor="lastname">Last Name</label>
-                        <input name="lastname" type="text" id="lastname" onChange={handleInput} value={LastName}disabled/>
-                    </div>
+                        <input name="lastname" type="text" id="lastName"  value={lastNameState} disabled />
+                    </div> */}
 
                     <div className="inputeUpdate input firstname">
                         <label htmlFor="firstname">First Name</label>
-                        <input name='firstname' type="text" id="firstName" onChange={handleInput} value={firstName} disabled />
+                        <input name='firstname' type="text" id="firstName"  value={firstNameState} disabled />
                     </div>
                 </form>
 

@@ -3,7 +3,7 @@ import { accountService } from '@/service/accountService';
 import './nav.css'
 
 const Nav = () => {
-    const UserInfo = useSelector(state => state)
+    const UserInfo = useSelector(state => state.Profile)
     let btnNav = '';
 
     if (accountService.isLogged()) {
@@ -11,7 +11,7 @@ const Nav = () => {
             <div>
                 <a className="main-nav-item" href="user">
                     <i className="fa fa-user-circle"></i>
-                    {UserInfo.Profile.user.firstName} |
+                    {UserInfo.user.firstName} |
                 </a>
 
                 <a onClick={accountService.logOut} href='/'>
