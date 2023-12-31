@@ -1,5 +1,5 @@
 import React from 'react';
-import getToken from '@service/connection'
+import { userService } from '@service/userService'
 import { useNavigate } from 'react-router-dom'
 import { accountService } from '@/service/accountService';
 import './login.css'
@@ -22,7 +22,7 @@ const Login = () => {
     dataForm.append("password", formData.get("password"))
     
     //fetching for token
-    let response = await getToken(dataForm);
+    let response = await userService.getToken(dataForm);
     //catching error
     if (response.status != 200) {
         console.log('Connection lost.')

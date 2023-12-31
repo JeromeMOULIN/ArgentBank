@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import getProfile from '@service/Profile'
+import { userService } from '@service/userService'
 import { useDispatch, useSelector } from 'react-redux';
 
 import './user.css'
@@ -13,7 +13,7 @@ const User = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        getProfile()
+        userService.getProfile()
             .then(userData => {
                 console.log(userData)
                 dispatch({
