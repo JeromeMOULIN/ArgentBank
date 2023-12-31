@@ -4,6 +4,7 @@ let saveToken = (token) => {
 
 let logOut = () => {
     localStorage.removeItem('token')
+    window.location('/')
     
 }
 
