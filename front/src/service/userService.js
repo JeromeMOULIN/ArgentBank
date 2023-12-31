@@ -9,15 +9,6 @@ const getToken = async (dataForm) => {
     return result
 }
 
-//recuperation profile
-
-//  {
-//         headers: {
-//             'Authorization': "Bearer " + localStorage.getItem('token'),
-//         },
-//     }
-
-
 const getProfile = async () => {
     const responseUser = await Axios.post('http://localhost:3001/api/v1/user/profile');
     let dataUser = responseUser.data
@@ -27,5 +18,5 @@ const getProfile = async () => {
 
 
 export const userService = {
-    getToken, getProfile 
+    getToken, getProfile
 } 

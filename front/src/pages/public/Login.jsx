@@ -8,40 +8,40 @@ import './login.css'
 
 const Login = () => {
     const navigate = useNavigate();
-    
+
     const Connect = async (e) => {
-    e.preventDefault()
+        e.preventDefault()
 
-    //data recuperation
-    const form = e.target
-    const formData = new FormData(form)
+        //data recuperation
+        const form = e.target
+        const formData = new FormData(form)
 
-    //set fetch Params
-    let dataForm = new URLSearchParams();
-    dataForm.append("email", formData.get("email"))
-    dataForm.append("password", formData.get("password"))
-    
-    //fetching for token
-    let response = await userService.getToken(dataForm);
-    //catching error
-    if (response.status != 200) {
-        console.log('Connection lost.')
+        //set fetch Params
+        let dataForm = new URLSearchParams();
+        dataForm.append("email", formData.get("email"))
+        dataForm.append("password", formData.get("password"))
+
+        //fetching for token
+        let response = await userService.getToken(dataForm);
+        //catching error
+        if (response.status != 200) {
+            console.log('Connection lost.')
+            console.log(response)
+            return
+        }
+
+        //response
+        console.log('Connection successed.')
         console.log(response)
-        return
+        let token = response.body.token
+
+        //save token in localStorage
+        accountService.saveToken(token)
+
+        //redirection // Need to update with navigate user/:userName
+        navigate('/user')
+
     }
-
-    //response
-    console.log('Connection successed.')
-    console.log(response)
-    let token = response.body.token
-
-    //save token in localStorage
-    accountService.saveToken(token)
-
-    //redirection // Need to update with navigate user/:userName
-    navigate('/user')
-
-}
     return (
         <main className="main bg-dark">
             <section className="sign-in-content">
