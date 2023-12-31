@@ -4,19 +4,23 @@ const getToken = async (dataForm) => {
     //fetch to receiv token
     console.log("Trying to connect.")
 
-    const response = await Axios.post('user/login', dataForm);
+    const response = await Axios.post('/user/login', dataForm);
     let result = response.data
     return result
 }
 
 const getProfile = async () => {
-    const responseUser = await Axios.post('http://localhost:3001/api/v1/user/profile');
+    const responseUser = await Axios.post('/user/profile');
     let dataUser = responseUser.data
 
     return dataUser
 }
 
+const changeUserName = async (newUserName) => {
+    const responseChange = await Axios.put('/user/profile',{userName: newUserName});
+}
+
 
 export const userService = {
-    getToken, getProfile
+    getToken, getProfile, changeUserName
 } 

@@ -15,7 +15,6 @@ const User = () => {
     useEffect(() => {
         userService.getProfile()
             .then(userData => {
-                console.log(userData)
                 dispatch({
                     type: "Profile/setUser",
                     payload: userData.body,
@@ -28,9 +27,12 @@ const User = () => {
 
     let firstName = userInfo.user.firstName
     let lastName = userInfo.user.lastName
+    let userName = userInfo.user.userName
 
-    const show = () => {
+    const show = (e) => {
+        e.preventDefault()
         document.querySelector('.updateForm').classList.toggle("hidden")
+        document.querySelector('#EditName').classList.toggle("hidden")
     }
 
     const handleInput = (e) => {
@@ -46,18 +48,23 @@ const User = () => {
         e.preventDefault()
     }
 
+    const changeUserName = (e) => {
+        e.preventDefault()
+        let newUserName = document.querySelector('#username').value
+        userService.changeUserName(newUserName)
+    }
+
 
     return (
         <main className="main bg-dark">
             <div className="header">
-                <h1>Welcome back<br />{firstName} {lastName}</h1>
+                <h1>Welcome back<br />{firstName} {lastName} {userName}</h1>
 
-                <button onClick={show} className="edit-button">Edit Name</button>
+                <button onClick={show} id='EditName' className="edit-button">Edit Name</button>
 
                 <form className='updateForm hidden'>
                     <div className="inputeUpdate input-username">
                         <label htmlFor="username">UserName</label>
-                        <button onClick={updateUserName} className='majName'>X</button>
                         <input name='username' type="text" id="username" onChange={handleInput} value={userInfo.user.userName} />
                     </div>
 
@@ -70,6 +77,10 @@ const User = () => {
                         <label htmlFor="firstname">First Name</label>
                         <input name='firstname' type="text" id="firstName"  value={firstNameState} disabled />
                     </div>
+
+                    <button onClick={changeUserName} className='edit-button'>Save</button>
+                    
+                    <button onClick={show} className='edit-button'>Cancel</button>
                 </form>
 
             </div>

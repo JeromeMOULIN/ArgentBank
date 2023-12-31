@@ -26,13 +26,11 @@ const Login = () => {
         //catching error
         if (response.status != 200) {
             console.log('Connection lost.')
-            console.log(response)
             return
         }
 
         //response
         console.log('Connection successed.')
-        console.log(response)
         let token = response.body.token
 
         //save token in localStorage
