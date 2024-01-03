@@ -8,6 +8,7 @@ const User = () => {
     const [userNameState, setUserName] = useState('')
     const [lastNameState, setLastName] = useState('')
     const [firstNameState, setFirstName] = useState('')
+    const [ load, setLoad ] = useState(true)
     const userInfo = useSelector(state => state.Profile)
 
     const dispatch = useDispatch()
@@ -22,7 +23,9 @@ const User = () => {
                 setLastName(userInfo.user.lastName)
                 setFirstName(userInfo.user.firstName)
                 setUserName(userInfo.user.userName)
-            });
+                setLoad(false)
+            })
+           .catch(err => console.log(err)) ;
     }, [])
 
     let firstName = userInfo.user.firstName
@@ -44,16 +47,22 @@ const User = () => {
 
     }
 
-    const updateUserName = (e) => {
-        e.preventDefault()
-    }
-
     const changeUserName = (e) => {
         e.preventDefault()
         let newUserName = document.querySelector('#username').value
         userService.changeUserName(newUserName)
+        .then(
+            dispatch({
+            type: "Profile/setUserName",
+            payload: newUserName,
+        })
+        ).catch(err => console.log(err))
+        
     }
 
+    if(load){
+        return <div>LOADING</div>
+    }
 
     return (
         <main className="main bg-dark">
@@ -74,7 +83,7 @@ const User = () => {
                     </div>
 
                     <div className="inputeUpdate input firstname">
-                        <label htmlFor="firstname">First Name</label>
+                        <label htmlFor="firstName">First Name</label>
                         <input name='firstname' type="text" id="firstName" value={userInfo.user.firstName} disabled />
                     </div>
 
