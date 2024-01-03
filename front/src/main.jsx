@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 import { mainStore } from '@components/redux/UserSlice.jsx'
 
 import './index.css'
+import Error from './pages/public/Error.jsx'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: '/user',
         element: <AuthGuard/>
+      },
+      {
+        path: '*',
+        element: <Error/>
       }
 
     ]
