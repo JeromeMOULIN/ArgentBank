@@ -6,10 +6,13 @@
     align-items: center;
 }
 .errorMain p {
-    color: red;
+    color: #00bc77;
     font-size: 250px;
 }
+.errorMain p span{
+    color: darkgreen;
+}
 .errorMain a{
-    color: red;
+    color: darkgreen;
     font-size: 25px;
 }

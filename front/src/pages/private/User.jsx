@@ -38,10 +38,10 @@ const User = () => {
     const handleInput = (e) => {
         e.preventDefault()
         dispatch({
-                    type: "Profile/setUserName",
-                    payload: e.target.value,
-                })
-        
+            type: "Profile/setUserName",
+            payload: e.target.value,
+        })
+
     }
 
     const updateUserName = (e) => {
@@ -68,19 +68,21 @@ const User = () => {
                         <input name='username' type="text" id="username" onChange={handleInput} value={userInfo.user.userName} />
                     </div>
 
-                    {/* <div className="inputeUpdate input-lastname">
-                        <label htmlFor="lastname">Last Name</label>
-                        <input name="lastname" type="text" id="lastName"  value={lastNameState} disabled />
-                    </div> */}
+                    <div className="inputeUpdate input lastName">
+                        <label htmlFor="lastName">Last Name</label>
+                        <input name='lastNAme' type="text" id="lastName" value={userInfo.user.lastName} disabled />
+                    </div>
 
                     <div className="inputeUpdate input firstname">
                         <label htmlFor="firstname">First Name</label>
-                        <input name='firstname' type="text" id="firstName"  value={firstNameState} disabled />
+                        <input name='firstname' type="text" id="firstName" value={userInfo.user.firstName} disabled />
                     </div>
 
-                    <button onClick={changeUserName} className='edit-button'>Save</button>
-                    
-                    <button onClick={show} className='edit-button'>Cancel</button>
+                    <div className='UpdatingFormButtons'>
+                        <button onClick={changeUserName} className='edit-button'>Save</button>
+                        <button onClick={show} className='edit-button'>Cancel</button>
+                    </div>
+
                 </form>
 
             </div>
