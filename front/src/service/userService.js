@@ -1,7 +1,6 @@
 import Axios from "./callerService";
 
 const getToken = async (dataForm) => {
-    //fetch to receiv token
     console.log("Trying to connect.")
 
     const response = await Axios.post('/user/login', dataForm);
