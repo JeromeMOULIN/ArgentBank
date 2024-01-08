@@ -5,9 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import './user.css'
 
 const User = () => {
-    const [userNameState, setUserName] = useState('')
-    const [lastNameState, setLastName] = useState('')
-    const [firstNameState, setFirstName] = useState('')
     const [ load, setLoad ] = useState(true)
     const userInfo = useSelector(state => state.Profile)
 
@@ -20,9 +17,6 @@ const User = () => {
                     type: "Profile/setUser",
                     payload: userData.body,
                 })
-                setLastName(userInfo.user.lastName)
-                setFirstName(userInfo.user.firstName)
-                setUserName(userInfo.user.userName)
                 setLoad(false)
             })
            .catch(err => console.log(err)) ;

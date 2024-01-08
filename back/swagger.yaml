@@ -101,40 +101,46 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /transaction:
+  /transaction/customers/{id}:
     get:
       security:
         - Bearer: []
       tags:
         - Transaction module
-      summary: User Profile API
+      summary: User transactions of the month
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: number
+          description: id of the customer
       description: API for fetching a user transactions of this month
-      #produces:
-       # - application/json
       responses:
         '200':
           description: User profile retrieved successully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/TransactionAll'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /transaction/id:
+  /transaction/{id}:
     post:
       security:
         - Bearer: []
       tags:
         - Transaction module
-      summary: User Profile API
+      summary: User Transaction
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          description: id of the transaction
       description: API for posting a user transaction
-      #produces:
-       # - application/json
       responses:
         '200':
           description: User profile posted successully
-          schema:
-            $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
         '500':
@@ -144,22 +150,21 @@ paths:
         - Bearer: []
       tags:
         - Transaction module
-      summary: User Profile API
+      summary: User Transaction
       description: API for updating a user profile
       parameters:
-        - in: body
-          name: body
+        - in: path
+          name: id
+          type: integer
           description: get user transaction
           required: true
-          schema:
-            $ref: '#/definitions/UserProfile'
       produces:
         - application/json
       responses:
         '200':
           description: User transaction retrieved successully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/TransactionGet'
         '400':
           description: Invalid Fields
         '500':
@@ -169,22 +174,21 @@ paths:
         - Bearer: []
       tags:
         - Transaction module
-      summary: User Profile API
+      summary: User Transaction
       description: API for updating a user transation
       parameters:
-        - in: body
-          name: body
+        - in: path
+          name: id
+          type: integer
           description: Update user transaction attributes
           required: true
-          schema:
-            $ref: '#/definitions/UserProfile'
       produces:
         - application/json
       responses:
         '200':
           description: User transaction updated successully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/TransactionPut'
         '400':
           description: Invalid Fields
         '500':
@@ -194,22 +198,21 @@ paths:
         - Bearer: []
       tags:
         - Transaction module
-      summary: User Profile API
+      summary: User Transaction
       description: API for deleting user transaction
       parameters:
-        - in: body
-          name: body
+        - in: path
+          name: id
+          type: integer
           description: delete one transaction
           required: true
-          schema:
-            $ref: '#/definitions/UserProfile'
       produces:
         - application/json
       responses:
         '200':
           description: User transaction deleted successully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/TransactionDel'
         '400':
           description: Invalid Fields
         '500':
@@ -269,3 +272,59 @@ definitions:
     properties:
       userName:
         type: string
+  TransactionAll:
+    type: array
+    items:
+      type: object
+      properties:
+        date:
+          type: string
+          example: '03/01/2024'
+        description: 
+          type: string
+          example: 'Golden Sun Bakery'
+        amount:
+          type: integer
+          example: 26
+  TransactionGet:
+    type: array
+    items:
+      type: object
+      properties:
+        date:
+          type: string
+          example: '04/01/2024'
+        description: 
+          type: string
+          example: 'Golden Sun Bakery'
+        amount:
+          type: integer
+          example: 9.65
+  TransactionPut:
+    type: array
+    items:
+      type: object
+      properties:
+        date:
+          type: string
+          example: '06/01/2024'
+        description: 
+          type: string
+          example: 'Golden Sun Bakery'
+        amount:
+          type: integer
+          example: 128.26
+  TransactionDel:
+    type: array
+    items:
+      type: object
+      properties:
+        date:
+          type: string
+          example: '08/01/2024'
+        description: 
+          type: string
+          example: 'Golden Sun Bakery'
+        amount:
+          type: integer
+          example: 86.9

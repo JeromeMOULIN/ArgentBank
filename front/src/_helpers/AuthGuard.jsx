@@ -10,7 +10,7 @@ const AuthGuard = () => {
         console.log('redirect home')
         return <Navigate to="/login"/>
     };
-    console.log('redircet user')
+    console.log('redirect user')
     return <User />
 };
 

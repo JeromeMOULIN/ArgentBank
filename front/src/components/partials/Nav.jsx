@@ -19,7 +19,6 @@ const Nav = () => {
                     payload: userData.body,
                 })
             });
-        console.log('hello')
     }, [])
 
     if (accountService.isLogged()) {
