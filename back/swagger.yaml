@@ -65,8 +65,6 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-       # - application/json
       responses:
         '200':
           description: User profile retrieved successully
@@ -132,11 +130,17 @@ paths:
         - Transaction module
       summary: User Transaction
       parameters:
-        - name: id
-          in: path
-          required: true
+        - in: path
+          name: id
           type: integer
           description: id of the transaction
+          required: true
+        - in: body
+          name: data
+          required: true
+          description: id of the transaction
+          schema:
+            $ref: '#/definitions/DataTransaction'
       description: API for posting a user transaction
       responses:
         '200':
@@ -180,8 +184,14 @@ paths:
         - in: path
           name: id
           type: integer
+          description: id of the transaction
+          required: true
+        - in: body
+          name: dataUpdate
           description: Update user transaction attributes
           required: true
+          schema:
+            $ref: '#/definitions/DataTransaction'
       produces:
         - application/json
       responses:
@@ -213,6 +223,8 @@ paths:
           description: User transaction deleted successully
           schema:
             $ref: '#/definitions/TransactionDel'
+        '204':
+          description: The resource was deleted successfully.
         '400':
           description: Invalid Fields
         '500':
@@ -328,3 +340,12 @@ definitions:
         amount:
           type: integer
           example: 86.9
+  DataTransaction:
+    properties:
+      category:
+        type: string
+        description: transaction category
+      note:
+        type: string
+        description: transaction note
+    
