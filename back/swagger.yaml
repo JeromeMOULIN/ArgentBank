@@ -323,6 +323,12 @@ definitions:
         description: 
           type: string
           example: 'Golden Sun Bakery'
+        category:
+          type: string
+          example: 'Food'
+        note: 
+          type: string
+          example: 'マクドナルド'
         amount:
           type: integer
           example: 128.26
