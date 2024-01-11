@@ -120,6 +120,8 @@ paths:
             $ref: '#/definitions/TransactionAll'
         '400':
           description: Invalid Fields
+        '401':
+          description: User not authenticated
         '500':
           description: Internal Server Error
   /transaction/{id}:
@@ -147,6 +149,8 @@ paths:
           description: User profile posted successully
         '400':
           description: Invalid Fields
+        '401':
+          description: User not authenticated
         '500':
           description: Internal Server Error
     get:
@@ -160,17 +164,19 @@ paths:
         - in: path
           name: id
           type: integer
-          description: get user transaction
+          description: get transaction id
           required: true
       produces:
         - application/json
       responses:
         '200':
-          description: User transaction retrieved successully
+          description: Transaction retrieved successully
           schema:
-            $ref: '#/definitions/TransactionGet'
+            $ref: '#/definitions/DataTransaction'
         '400':
           description: Invalid Fields
+        '401':
+          description: User not authenticated
         '500':
           description: Internal Server Error
     put:
@@ -201,6 +207,8 @@ paths:
             $ref: '#/definitions/TransactionPut'
         '400':
           description: Invalid Fields
+        '401':
+          description: User not authenticated
         '500':
           description: Internal Server Error
     delete:
@@ -223,6 +231,8 @@ paths:
           description: The resource was deleted successfully.
         '400':
           description: Invalid Fields
+        '401':
+          description: User not authenticated
         '500':
           description: Internal Server Error
 securityDefinitions:
@@ -285,6 +295,9 @@ definitions:
     items:
       type: object
       properties:
+        id:
+          type: integer
+          example: 1
         date:
           type: string
           example: '03/01/2024'
@@ -305,9 +318,6 @@ definitions:
         description: 
           type: string
           example: 'Golden Sun Bakery'
-        amount:
-          type: integer
-          example: 9.65
   TransactionPut:
     type: array
     items:
@@ -328,6 +338,20 @@ definitions:
         amount:
           type: integer
           example: 128.26
+  TransactionDel:
+    type: array
+    items:
+      type: object
+      properties:
+        date:
+          type: string
+          example: '08/01/2024'
+        description: 
+          type: string
+          example: 'Golden Sun Bakery'
+        amount:
+          type: integer
+          example: 86.9
   DataTransaction:
     properties:
       category:
