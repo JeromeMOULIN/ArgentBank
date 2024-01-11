@@ -1,5 +1,6 @@
 import React from 'react';
 
+import './featureItem.css'
 const FeatureItem = (props) => {
 
     console.log(props)
