@@ -1,11 +1,10 @@
 import React from 'react';
 
 import './transaction.css'
-const transaction = [1, 2, 3]
 
 const Transaction = (props) => {
     return (
-        <section className="account">
+        <section className="account" id={props.id} >
             <div className="account-content-wrapper">
                 <h3 className="account-title">{props.title}</h3>
                 <p className="account-amount">{props.amount}</p>
