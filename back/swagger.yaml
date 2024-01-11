@@ -219,10 +219,6 @@ paths:
       produces:
         - application/json
       responses:
-        '200':
-          description: User transaction deleted successully
-          schema:
-            $ref: '#/definitions/TransactionDel'
         '204':
           description: The resource was deleted successfully.
         '400':
@@ -332,20 +328,6 @@ definitions:
         amount:
           type: integer
           example: 128.26
-  TransactionDel:
-    type: array
-    items:
-      type: object
-      properties:
-        date:
-          type: string
-          example: '08/01/2024'
-        description: 
-          type: string
-          example: 'Golden Sun Bakery'
-        amount:
-          type: integer
-          example: 86.9
   DataTransaction:
     properties:
       category:
