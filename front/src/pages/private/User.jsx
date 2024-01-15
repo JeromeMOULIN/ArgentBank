@@ -8,6 +8,7 @@ import Transaction from '@components/partials/Transaction';
 const User = () => {
     const [load, setLoad] = useState(true)
     const userInfo = useSelector(state => state.Profile)
+    const [nameUser, setNameUser] = useState('')
 
     const dispatch = useDispatch()
 
@@ -18,6 +19,7 @@ const User = () => {
                     type: "Profile/setUser",
                     payload: userData.body,
                 })
+                setNameUser(userInfo.user.userName)
                 setLoad(false)
             })
             .catch(err => console.log(err));
@@ -25,21 +27,11 @@ const User = () => {
 
     let firstName = userInfo.user.firstName
     let lastName = userInfo.user.lastName
-    let userName = userInfo.user.userName
 
     const show = (e) => {
         e.preventDefault()
         document.querySelector('.updateForm').classList.toggle("hidden")
         document.querySelector('#EditName').classList.toggle("hidden")
-    }
-
-    const handleInput = (e) => {
-        e.preventDefault()
-        dispatch({
-            type: "Profile/setUserName",
-            payload: e.target.value,
-        })
-
     }
 
     const changeUserName = (e) => {
@@ -79,18 +71,17 @@ const User = () => {
             "description": "Current Balance"
         }
     ]
-
     return (
         <main className="main bg-dark">
             <div className="header">
-                <h1>Welcome back<br />{firstName} {lastName} {userName}</h1>
+                <h1>Welcome back<br />{firstName} {lastName}</h1>
 
                 <button onClick={show} id='EditName' className="edit-button">Edit Name</button>
 
                 <form className='updateForm hidden'>
                     <div className="inputeUpdate input-username">
                         <label htmlFor="username">UserName</label>
-                        <input name='username' type="text" id="username" onChange={handleInput} value={userInfo.user.userName} />
+                        <input name='username' type="text" id="username" onChange={e => setNameUser(e.target.value)} value={nameUser} />
                     </div>
 
                     <div className="inputeUpdate input lastName">

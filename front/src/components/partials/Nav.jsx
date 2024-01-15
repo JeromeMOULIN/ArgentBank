@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { accountService } from '@/service/accountService';
 import { userService } from '@/service/userService';
-import './nav.css'
 import { useEffect } from 'react';
 
+import './nav.css'
 
 
 const Nav = () => {

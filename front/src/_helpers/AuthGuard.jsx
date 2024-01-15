@@ -1,16 +1,15 @@
 import React from 'react';
 import User from '@pages/private/User.jsx'
 import { Navigate} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 const AuthGuard = () => {
+    const Profile = useSelector(state => state.Profile)
 
-    console.log('try to redirect')
     if (!localStorage.getItem('token')) {
-        console.log('redirect home')
         return <Navigate to="/login"/>
     };
-    console.log('redirect user')
     return <User />
 };
 
