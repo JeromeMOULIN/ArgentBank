@@ -1,9 +1,10 @@
 import React from 'react';
-import FeatureItem from '../../components/partials/featureItem';
+import FeatureItem from '@components/partials/featureItem';
 
 import './home.css'
 
 const Home = () => {
+
     return (
         <main>
             <div className="hero">

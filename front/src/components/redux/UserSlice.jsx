@@ -8,7 +8,10 @@ const UserSlice = createSlice({
             firstName: "",
             LastName: "",
             userName: "",
+        },
+        connection: {
             token: "",
+            isLogged: false,
         }
     },
     reducers: {
@@ -18,8 +21,11 @@ const UserSlice = createSlice({
         setUserName: (state, action) => {
             state.user.userName = action.payload
         },
-        setUserToken: (state, action) => {
-            state.user.token = action.payload
+        setLogin: (state, action) => {
+            state.connection.token = action.payload
+        },
+        setLogged: (state, action) => {
+            state.connection.isLogged = action.payload
         }
     },
 })

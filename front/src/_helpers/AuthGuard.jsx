@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 const AuthGuard = () => {
     const Profile = useSelector(state => state.Profile)
 
-    if (!localStorage.getItem('token')) {
+    if (!Profile.connection.token) {
         return <Navigate to="/login"/>
     };
     return <User />

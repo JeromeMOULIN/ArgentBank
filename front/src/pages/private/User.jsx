@@ -21,6 +21,7 @@ const User = () => {
                 })
                 setNameUser(userInfo.user.userName)
                 setLoad(false)
+
             })
             .catch(err => console.log(err));
     }, [])
@@ -33,7 +34,7 @@ const User = () => {
         document.querySelector('.updateForm').classList.toggle("hidden")
         document.querySelector('#EditName').classList.toggle("hidden")
     }
-
+    
     const changeUserName = (e) => {
         e.preventDefault()
         let newUserName = document.querySelector('#username').value
@@ -71,6 +72,7 @@ const User = () => {
             "description": "Current Balance"
         }
     ]
+
     return (
         <main className="main bg-dark">
             <div className="header">

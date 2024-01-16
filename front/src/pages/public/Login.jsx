@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
 import { userService } from '@service/userService'
 import { useNavigate } from 'react-router-dom'
-//import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './login.css'
 
 const Login = () => {
     const navigate = useNavigate();
-    //const Profile = useSelector(state => state.Profile)
-    //const dispatch = useDispatch()
+    const Profile = useSelector(state => state.Profile)
+    const dispatch = useDispatch()
 
     const Connect = async (e) => {
         e.preventDefault()
@@ -35,14 +34,9 @@ const Login = () => {
         console.log('Connection successed.')
         let token = response.body.token
 
-        //save token in local
-        localStorage.setItem("token", token)
-
         //save token in redux
-        // dispatch({
-        //     type: "Profile/setUserToken",
-        //     payload: token
-        // })
+        dispatch({ type: "Profile/setLogin", payload: token })
+        dispatch({ type: "Profile/setLogged", payload: true })
 
         //redirection
         navigate('/user')

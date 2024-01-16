@@ -16,7 +16,7 @@ const getProfile = async () => {
 }
 
 const changeUserName = async (newUserName) => {
-    const responseChange = await Axios.put('/user/profile',{userName: newUserName});
+    const responseChange = await Axios.put('/user/profile', { userName: newUserName });
 }
 
 
